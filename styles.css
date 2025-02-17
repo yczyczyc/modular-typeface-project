@@ -1,0 +1,72 @@
+/* Overall Page Styling */
+body {
+    margin: 0;
+    padding: 20px; /* Add margin for overall layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 1);
+    /* background-color:#fff;  */
+    color: #fff;
+    font-family: "Palatino", serif;
+  }
+  
+  /* Header Section */
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    color: rgb(0, 255, 255);
+    font-size: 48px;
+    letter-spacing: 1px;
+    font-weight: 200;
+    /* text-transform: uppercase; */
+  }
+  
+  p {
+    color: rgb(195, 196, 196);
+    font-size: 14px;
+    /* letter-spacing: 2px; */
+    /* text-transform: uppercase; */
+    line-height: 1.8;
+    margin: 10px auto 20px;
+    max-width: 600px;
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+
+  }
+  
+  /* Letter Grid Wrapper (Flexbox) */
+  .letter-grid {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next row */
+    /* gap: 20px; Space between containers */
+    justify-content: center; /* Center items horizontally */
+    width: 100%;
+    max-width: 1200px; /* Prevent grid from being too wide */
+    box-sizing: border-box;
+  }
+  
+  /* Letter Container Styling */
+  .letter-container {
+    width: 200px; /* Fixed width */
+    height: 280px; /* Fixed height */
+    background-color: rgba(255, 255, 255, 0);
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  /* Each letter container holds the canvas */
+.canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
