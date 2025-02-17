@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p5.js Sketches</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica", sans-serif;
+        }
+        /* Navbar styles */
+        #navbar {
+            background-color: #00262d;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        #navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 20px;
+            cursor: pointer;
+        }
+        #navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Dropdown styles */
+        #dropdown {
+            position: fixed;
+            top: 50px;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: rgba(0, 0, 0, 0);
+            transition: height 0.3s ease;
+            overflow: hidden;
+        }
+
+        #dropdown.expanded {
+            height: 75%;
+        }
+
+        #dropdown .content {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            padding-top: 20px;
+        }
+
+        /* Button styles */
+        .collapse-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #ff5722;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+
+    </style>
+
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <!-- <script src="sketch1.js"></script> -->
+    <script src="shapes.js"></script>
+    <script src="utils.js"></script>
+    <script src="letterCompositions.js"></script>
+    <script src="main.js"></script>
+    <script src="main.js"></script>
+
+</head>
+<body>
+    <div class="header">
+        <h1>Cyclic</h1>
+        <p>Cyclic is a coded modular typeface that visualizes the passage of time. </p>
+        <p>Rings in the letterform shift in rotation every second. Each additional shape within the letters consists of 12 rays of light—each representing a unit of time. Every five seconds, the light transitions to the next ray. Altogether they mark the steady progression of a full minute.
+        </p>
+    </div>
+
+     <!-- Navigation bar -->
+     <div id="navbar">
+        <a onclick="toggleDropdown()">Click and Scroll to bottom for <em>Clock</em></a>
+    </div>
+
+    <!-- Dropdown menu for clock -->
+    <div id="dropdown">
+        <!-- <button class="collapse-btn" onclick="toggleDropdown()">Collapse</button> -->
+        <div class="content">
+            <!-- Clock canvas will be injected here -->
+            <div id="clock-container"></div>
+        </div>
+    </div>
+
+    <div class="letter-grid" id="sketches-container"></div>
+</body>
+</html>
