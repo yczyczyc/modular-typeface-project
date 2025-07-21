@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p5.js Sketches</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="shapes.js"></script>
+    <script src="utils.js"></script>
+    <script src="letterCompositions.js"></script>
+    <script src="main.js"></script>
+
+    <style>
+        #togglePageBtn {
+            position: fixed;
+            bottom: 2vh;
+            left: 2vw;
+            padding: 12px 24px;
+            background: #E1192D;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        #toggleOverlayBtn {
+            position: fixed;
+            bottom: 5vh;
+            left: 2vw;
+            padding: 12px 24px;
+            background: #E1192D;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 100;
+        }
+      </style>
+</head>
+<body>
+    <button id="togglePageBtn" type="button"> Clock </button>
+    <button id="toggleOverlayBtn" type="button">View Letters</button>
+    <div id="letter-info-overlay" class="info-overlay">
+        <div class="info-content">
+            <p><strong>Cactus Clock</strong> is a modular, interactive typeface designed and developed by Yuechen Zhang using p5.js for Advanced Interaction Design SP2025.</p>
+            <p>The design draws inspiration from the forms of cactus spines and analog clock faces. Circular elements rotate in real time, while every five seconds, a new spike is highlighted within each array of twelve.</p>
+                    </div>
+      </div>
+
+    <div class="letter-grid" id="sketches-container"></div>
+
+    <div id="overlay-container" style="display: none;">
+    <button id="closeOverlayBtn" type="button"> ✕ </button>
+    <div id="overlayLetterList"></div>
+    </div>
+
+    <script>
+            document.addEventListener("DOMContentLoaded", () => {
+            const button = document.getElementById("togglePageBtn");
+            button.textContent = "Go to Clock";
+        
+            button.addEventListener("click", () => {
+                window.location.href = "clock.html";
+            });
+            });
+    </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const overlay = document.getElementById("overlay-container");
+      const openBtn = document.getElementById("toggleOverlayBtn");
+      const closeBtn = document.getElementById("closeOverlayBtn");
+      const list = document.getElementById("overlayLetterList");
+    
+      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      let overlayInitialized = false;
+    
+      openBtn.addEventListener("click", () => {
+        overlay.style.display = "flex";
+    
+        if (!overlayInitialized) {
+          overlayInitialized = true;
+    
+          letters.split("").forEach(letter => {
+            const container = document.createElement("div");
+            container.className = "overlay-letter-container";
+            list.appendChild(container);
+    
+            const composition = letterCompositions[letter] || [];
+    
+            new p5((p) => {
+              let shapesData = {};
+    
+              p.setup = () => {
+                const canvas = p.createCanvas(container.clientWidth, container.clientHeight);
+                canvas.parent(container);
+                p.noFill();
+                p.angleMode(p.DEGREES);
+    
+                composition.forEach(({ shape }) => {
+                  if (shapes[shape]) {
+                    shapesData[shape] = shapes[shape].setup(p);
+                  }
+                });
+              };
+    
+              p.draw = () => {
+                p.background(255);
+                composition.forEach(({ shape, offset }) => {
+                  if (shapes[shape]) {
+                    const proportionalOffset = {
+                      x: offset.x * p.width / 240,
+                      y: offset.y * p.height / 300
+                    };
+                    shapes[shape].draw(p, shapesData[shape], proportionalOffset);
+                  }
+                });
+              };
+            });
+          });
+        }
+      });
+    
+      closeBtn.addEventListener("click", () => {
+        overlay.style.display = "none";
+      });
+    });
+    </script>
+</body>
+</html>

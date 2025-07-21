@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p5.js Sketches</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="shapes.js"></script>
+    <script src="utils.js"></script>
+    <script src="letterCompositions.js"></script>
+    <script src="clockMain.js"></script>
+    <script src="clock.js"></script>
+
+    <style>
+        #overlay-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background: rgba(0,0,0,0.85); */
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+             pointer-events: none; /* Makes it click-through */
+        }
+
+        /* #clock-button {
+            position: fixed;
+            bottom: 5vh;
+            left: 2vw;
+            padding: 12px 24px;
+            background: #E1192D;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 100;
+        } */
+
+        #togglePageBtn {
+        position: fixed;
+        bottom: 2vh;
+        left: 2vw;
+        padding: 12px 24px;
+        background: #E1192D;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-size: 1rem;
+        cursor: pointer;
+        z-index: 100;
+        }
+      </style>
+</head>
+<body>
+    <!-- <button id="clock-button" type="button">Check Time</button> -->
+    <button id="togglePageBtn" type="button"> Specimen</button>
+
+    <div id="overlay-container"></div>
+    <div id="word-twelve" class="canvas-zone top"></div>
+    <div id="word-three" class="canvas-zone right"></div>
+    <div id="word-six" class="canvas-zone bottom"></div>
+    <div id="word-nine" class="canvas-zone left"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const button = document.getElementById("togglePageBtn");
+          button.textContent = "Specimen";
+      
+          button.addEventListener("click", () => {
+            window.location.href = "index.html";
+          });
+        });
+      </script>
+    </body>
+</html>
